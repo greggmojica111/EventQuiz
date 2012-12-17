@@ -7,9 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "QuizManager.h"
+//#import "LoginViewController.h"
 
 @interface EQAppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) QuizManager *quizManager;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+//@property (strong, nonatomic) LoginViewController *lgvc;
+
+- (void) createViews;
+- (void) loginSuccesful;
+- (void) logout;
 
 @end

@@ -7,17 +7,76 @@
 //
 
 #import "EQAppDelegate.h"
+#import "PostQuestionViewController.h"
+#import "LoginViewController.h"
+#import "AboutViewController.h"
+#import "QuizViewController.h"
+#import "StatusViewController.h"
+#import <Parse/Parse.h>
 
 @implementation EQAppDelegate
+@synthesize tabBarController, quizManager;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    [Parse setApplicationId:@"CowBcvza653yEGEqCxMgpaP4czypyasWD4vrdYZk"
+                  clientKey:@"qJNpZrRjJh9MrqbH48XZRxxH333vPeesopf6KTPY"];
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    LoginViewController *lgvc = [[LoginViewController alloc] init];
+    [lgvc setEqAppDelegate:self];
+    
+    [[self window] setRootViewController:lgvc];
+    [self createViews];
+    
     [self.window makeKeyAndVisible];
     return YES;
 }
+
+- (void) createViews
+{
+    quizManager = [[QuizManager alloc]init];
+    
+    AboutViewController *aboutvc = [[AboutViewController alloc] init];
+    
+    QuizViewController *quizcv = [[QuizViewController alloc] init];
+    [quizcv setQuizManager:quizManager];
+    
+    PostQuestionViewController *postvc = [[PostQuestionViewController alloc] init];
+    
+    StatusViewController *statusvc = [[StatusViewController alloc] init];
+    [statusvc setQuizManager:quizManager];
+    [statusvc setEqAppDelegate:self];
+    
+    tabBarController = [[UITabBarController alloc]init];
+    NSArray *viewControllers = [NSArray arrayWithObjects:
+                                aboutvc, quizcv, postvc,statusvc, nil];
+    
+    [tabBarController setViewControllers:viewControllers];
+    //[[self window] setRootViewController:tabBarController];
+    
+    [self.window makeKeyAndVisible];
+}
+
+- (void) loginSuccesful
+{
+    [quizManager reset];
+    
+    [[self window] setRootViewController:tabBarController];
+    [self.window makeKeyAndVisible];
+}
+
+- (void) logout
+{
+    LoginViewController *lgvc = [[LoginViewController alloc] init];
+    [lgvc setEqAppDelegate:self];
+    [tabBarController setSelectedIndex:0];
+    
+    [[self window] setRootViewController:lgvc];
+    
+    [self.window makeKeyAndVisible];
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -27,7 +86,7 @@
 
 - (void)applicationDidEnterBackground:(UIApplication *)application
 {
-    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
+    // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
 }
 
