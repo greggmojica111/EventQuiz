@@ -21,7 +21,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Quiz"];
-        UIImage *i = [UIImage imageNamed:@"Hypno.png"];
+        UIImage *i = [UIImage imageNamed:@"Blue 2.png"];
         [tbi setImage:i];
     }
     return self;

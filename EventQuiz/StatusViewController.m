@@ -25,7 +25,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Status"];
-        UIImage *i = [UIImage imageNamed:@"Hypno.png"];
+        UIImage *i = [UIImage imageNamed:@"Purple.png"];
         [tbi setImage:i];
     }
     return self;

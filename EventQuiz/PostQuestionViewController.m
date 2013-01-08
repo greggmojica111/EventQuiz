@@ -20,7 +20,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"Post Question"];
-        UIImage *i = [UIImage imageNamed:@"Hypno.png"];
+        UIImage *i = [UIImage imageNamed:@"Mail Pencil.png"];
         [tbi setImage:i];
     }
     return self;

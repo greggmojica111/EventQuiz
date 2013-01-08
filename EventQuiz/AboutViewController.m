@@ -20,7 +20,7 @@
     if (self) {
         UITabBarItem *tbi = [self tabBarItem];
         [tbi setTitle:@"About"];
-        UIImage *i = [UIImage imageNamed:@"Hypno.png"];
+        UIImage *i = [UIImage imageNamed:@"Home.png"];
         [tbi setImage:i];    }
     return self;
 }
